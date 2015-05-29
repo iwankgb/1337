@@ -1,3 +1,4 @@
+//chuck helps you to draw a random Chuck Norris joke
 package chuck
 
 import (

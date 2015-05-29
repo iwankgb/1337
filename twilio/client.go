@@ -1,9 +1,7 @@
+// twilio sends text messages using twilio and is ridicolously simple...
 package twilio
 
 import (
-	//	"bytes"
-	//	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/url"
 )
@@ -26,41 +24,5 @@ func NewClient(sid *string, token *string) *client {
 }
 
 func (c *client) Send(to *string, from *string, message *string) {
-	fmt.Println(*to)
-	fmt.Println(*from)
-	fmt.Println(*message)
-	query := "To=" + *to + "&From=" + *from + "&Body=" + *message
-	form, _ := url.ParseQuery(query)
-	request := new(http.Request)
-	//	request.SetBasicAuth(*c.sid, *c.token)
-	request.URL.RawQuery = form.Encode()
-	response, err := c.client.Do(request)
-	fmt.Println(response)
-	fmt.Println(err)
-	//	jsonObj := &requestBody{From: *from, To: *to, Body: *message}
-	//	jsonBody, _ := json.Marshal(jsonObj)
-	//	fmt.Println(jsonBody)
-	//	values := new(url.Values)
-	//	values.Add("To", *to)
-	//	values.Add("From", *from)
-	//	values.Add("Body", *message)
-	//	fmt.Println(values)
-	//	c.client.PostForm()
-	//	c.client.PostForm("https://api.twilio.com/2010-04-01/Accounts/"+*c.sid+"/Messages", values)
-	//	request, _ := http.NewRequest("POST", "https://api.twilio.com/2010-04-01/Accounts/"+*c.sid+"/Messages", bytes.NewBuffer(jsonBody))
-	//	request.Header.Add("Content-Type", "application/json")
-	//	request.SetBasicAuth(*c.sid, *c.token)
-	//	fmt.Println(request)
-	//	result, err := c.client.Do(request)
-	//	fmt.Println(result)
-	//	fmt.Println(err)
-	//	body := bytes.NewBuffer(make([]byte, 1000))
-	//	enc := json.NewEncoder(body)
-	//	json := &requestBody{From: *from, To: *to, Body: *message}
-	//	fmt.Println(enc.Encode(json))
-	//	fmt.Println(json)
-
-	//	json := ""
-	//	dupa := ""
-	//	request, _ := http.NewRequest("POST", "https://api.twilio.com/2010-04-01/"+*c.sid+"/Messages", bytes.NewBuffer(dupa))
+	http.PostForm("https://"+*c.sid+":"+*c.token+"@api.twilio.com/2010-04-01/Accounts/"+*c.sid+"/Messages.json", url.Values{"To": {*to}, "From": {*from}, "Body": {*message}})
 }

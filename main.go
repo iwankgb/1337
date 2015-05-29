@@ -1,4 +1,4 @@
-// 1337 project main.go
+// 1337 is just some fun, nothing more
 package main
 
 import (
@@ -12,7 +12,7 @@ var path = flag.String("path", "", "Path to Chuck Norris file")
 var sid = flag.String("sid", "", "Twilio AccountSID")
 var token = flag.String("token", "", "Twilio authentication token")
 var to = flag.String("to", "", "Receipient phone numbet")
-var from = flag.String("from", "1337", "Sender ID")
+var from = flag.String("from", "l33t", "Sender ID")
 
 func main() {
 	flag.Parse()
